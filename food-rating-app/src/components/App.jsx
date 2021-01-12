@@ -1,9 +1,9 @@
 import React from "react";
-import { foodPosts } from "../data";
+import { foodPosts } from "../data/data";
 
 import Posts from "./Posts";
 
-import "../App.css";
+import "../css/App.css";
 
 const App = () => {
   return (
