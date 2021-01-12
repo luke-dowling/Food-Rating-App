@@ -46,3 +46,13 @@ export const foodPosts = [
     ],
   },
 ];
+
+export const users = [
+  { id: 0, name: "User1", userName: "luke&adrian", password: "l&a" },
+  {
+    id: 1,
+    name: "User2",
+    userName: "blank",
+    password: "blank",
+  },
+];

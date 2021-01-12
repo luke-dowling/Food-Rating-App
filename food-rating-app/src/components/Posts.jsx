@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-//import IoStarSharp from "react-icons/io";
 
-const Posts = ({ data }) => {
+const Posts = ({ data, user }) => {
   const { title, img, des } = data[0];
   const [starRating, setStarRating] = useState(0);
 
