@@ -1,16 +1,19 @@
-import React from "react";
-import { foodPosts } from "../data/data";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Posts from "./Posts";
+import LogIn from "./LogIn";
+import User from "./User";
 
 import "../css/App.css";
 
 const App = () => {
   return (
-    <main>
-      <h1>Rate My Food</h1>
-      <Posts data={foodPosts} />
-    </main>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={LogIn} />
+        <Route path="/User/:user/" exact component={User} />
+      </Switch>
+    </Router>
   );
 };
 
