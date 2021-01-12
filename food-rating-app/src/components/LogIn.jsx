@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, Component, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { users } from "../data/data";
 
@@ -7,8 +7,8 @@ const LogIn = () => {
     userName: "",
     password: "",
   });
-
-  const [user, setUser] = useState([]);
+  const [isUser, setIsUser] = useState(false);
+  const [user, setUser] = useState(users);
 
   const signInHandler = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
@@ -16,14 +16,29 @@ const LogIn = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const userNameCheck = users.filter(
       (user) => user.userName === userDetails.userName
     );
-    const userPasswordCheck = userNameCheck.filter(
+    if (
+      userNameCheck[0] &&
+      userNameCheck[0].password === userDetails.password
+    ) {
+      setIsUser(true);
+    }
+    /* const userPasswordCheck = userNameCheck.filter(
       (user) => user.password === userDetails.password
     );
-    userPasswordCheck.length === 1 && setUser(userPasswordCheck);
+
+    userPasswordCheck.length === 1 && setUser(userPasswordCheck); */
   };
+  useEffect(() => {
+    if (isUser !== true) {
+      setIsUser(false);
+    } else {
+      setIsUser(true);
+    }
+  }, [isUser]);
 
   return (
     <form autoComplete="off" className="logInContainer">
@@ -40,7 +55,7 @@ const LogIn = () => {
         <button onClick={submitHandler}>
           <Link
             className="link"
-            to={(user.length === 1 && `/User/${user[0].userName}`) || "/"}
+            to={(isUser && `/User/${user[0].userName}`) || "/"}
           >
             Log In
           </Link>
