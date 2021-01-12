@@ -8,7 +8,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-/* LOG IN STYLES */
+/* LOG IN */
 
 .logInContainer {
   height: 100vh;
@@ -67,4 +67,45 @@ body {
   color: inherit;
 }
 
-/* END LOG IN STYLES */ ;
+/* END LOG IN */
+
+/* MEAL LIST */
+
+/*.meal-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  width: 90%;
+  margin: 0 auto;
+}*/
+
+/* END MEAL LIST */
+
+/* MEAL */
+/*.meal-card {
+  border: 3px solid red;
+  border-radius: 10px;
+  width: 350px;
+  height: 500px;
+  margin: 20px 50px;
+}
+
+.image-container {
+  width: 320px;
+  height: 200px;
+  margin: 10px auto;
+  overflow: hidden;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid darkred;
+  border-radius: 10px;
+}
+
+.image-container img {
+  width: 320px;
+  height: 300px;
+}*/
+
+/* END MEAL */

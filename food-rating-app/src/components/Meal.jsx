@@ -1,8 +1,28 @@
 import React from "react";
+import {
+  Box,
+  Image,
+  Badge,
+  Button,
+  Text,
+  Heading,
+  useDisclosure,
+  UnorderedList,
+  OrderedList,
+  ListItem,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+} from "@chakra-ui/react";
+
 import { FaTrash } from "react-icons/fa";
 import StarRating from "./StarRating";
 import { useMeals } from "../food-hook";
-export default function Meal({
+const Meal = ({
   title,
   name,
   userName,
@@ -12,27 +32,93 @@ export default function Meal({
   recipe,
   ingredients,
   rating,
-}) {
+}) => {
   const { rateMeal, removeMeal } = useMeals();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <section>
-      <div className="meal-card">
-        <h1>{title}</h1>
-        <h3>{name}</h3>
-        <h3>{userName}</h3>
-        <button onClick={() => removeMeal(id)}>
-          <FaTrash />
-        </button>
-        <div className="image-container">
-          <img src={image} alt="meal" style={{ height: "150px" }} />
-        </div>
-        <StarRating selectedStars={rating} />
-      </div>
-      <StarRating
-        selectedStars={rating}
-        onRate={(rating) => rateMeal(id, rating)}
-      />
-    </section>
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+      <Image boxSize="400px" objectFit="cover" src={image} alt="meal" />
+
+      <Box p="6">
+        <Box d="flex" alignItems="baseline">
+          <Badge
+            borderRadius="full"
+            objectFit="cover"
+            px="2"
+            colorScheme="teal"
+          >
+            @{userName}
+          </Badge>
+        </Box>
+
+        <Box
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          isTruncated
+        >
+          {title}
+        </Box>
+
+        <Box>
+          <Box as="span" color="gray.600" fontSize="sm">
+            Des :
+          </Box>
+          {description}
+        </Box>
+
+        <Button onClick={onOpen}>{name}</Button>
+
+        <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>{name}</ModalHeader>
+            <ModalCloseButton />
+
+            <ModalBody>
+              <Heading as="h4" size="m" mb={2}>
+                Ingredients
+              </Heading>
+              <UnorderedList p={3}>
+                {ingredients.map((ingredient) => {
+                  return <ListItem>{ingredient}</ListItem>;
+                })}
+              </UnorderedList>
+              <Heading as="h4" size="m" my={2}>
+                Recipe
+              </Heading>
+              <OrderedList p={3}>
+                {recipe.map((instruction) => {
+                  return <ListItem>{instruction}</ListItem>;
+                })}
+              </OrderedList>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button variant="ghost" mr={3}>
+                Export Recipe
+              </Button>
+              <Button colorScheme="blue" onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
+        <Box d="flex" mt="2" alignItems="center">
+          <StarRating selectedStars={rating} />
+        </Box>
+        <Box d="flex" mt="2" alignItems="center">
+          <StarRating
+            selectedStars={rating}
+            onRate={(rating) => rateMeal(id, rating)}
+          />
+        </Box>
+      </Box>
+    </Box>
   );
-}
+};
+
+export default Meal;

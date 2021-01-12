@@ -12,7 +12,7 @@ export const FOODDATA = [
     title: "My Verious Vegan Burger!",
     description:
       "This vegan burger will blow your mind, it is a bit spicy so bare that in mind!",
-    ingredients: ["1 garlic, 200g mushrooms, 1 lemon, 2 onions"],
+    ingredients: ["1 garlic", "200g mushrooms", "1 lemon", "2 onions"],
     recipe: [
       "Mix eveything together in a bowl",
       "Bake it in the oven for 45mins",
