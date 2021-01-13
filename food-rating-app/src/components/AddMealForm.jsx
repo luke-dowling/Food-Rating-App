@@ -15,6 +15,7 @@ export default function AddMealForm() {
     description: "",
     recipe: "",
     image: "",
+    ingredients: "",
   });
 
   const { addMeal } = useMeals();
@@ -22,7 +23,7 @@ export default function AddMealForm() {
   const submit = (e) => {
     e.preventDefault();
     addMeal(mealProps.value);
-    console.log(mealProps.value.image);
+
     resetMealProps();
   };
 
@@ -57,6 +58,16 @@ export default function AddMealForm() {
               onChange={mealProps.onChange}
               name="recipe"
               placeholder="meal recipe..."
+            />
+          </FormControl>
+          <FormControl isRequired id="ingredients">
+            <FormLabel htmlFor="ingredients">Meal ingredients</FormLabel>{" "}
+            <Input
+              errorBorderColor="red.300"
+              value={mealProps.value.ingredients}
+              onChange={mealProps.onChange}
+              name="ingredients"
+              placeholder="meal ingredients..."
             />
           </FormControl>
           <FormControl isRequired id="image">

@@ -8,10 +8,20 @@ export const useMeals = () => useContext(FoodContext);
 export default function FoodProvider({ children }) {
   const [meals, setMeals] = useState(FOODDATA);
 
-  const addMeal = ({ title, recipe, description, image }) => {
+  const addMeal = ({ title, recipe, description, image, ingredients }) => {
+    let ingredientsArray = ingredients.split(",");
+    let recipeArray = recipe.split(",");
     const newMeals = [
       ...meals,
-      { id: v4(), rating: 0, title, recipe, description, image },
+      {
+        id: v4(),
+        rating: 0,
+        title,
+        recipe: recipeArray,
+        description,
+        image,
+        ingredients: ingredientsArray,
+      },
     ];
     setMeals(newMeals);
   };

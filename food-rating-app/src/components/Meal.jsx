@@ -99,24 +99,25 @@ const Meal = ({
         </Box>
 
         <Box d="flex" alignItems="baseline">
-          {tags.map((tag, i) => {
-            let color;
-            tag === "Vegan" && (color = "teal");
-            tag === "GlutenFree" && (color = "blue");
-            return (
-              <Badge
-                key={i}
-                borderRadius="full"
-                objectFit="cover"
-                px={3}
-                my={2}
-                colorScheme={color}
-              >
-                {" "}
-                {tag}
-              </Badge>
-            );
-          })}
+          {tags &&
+            tags.map((tag, i) => {
+              let color;
+              tag === "Vegan" && (color = "teal");
+              tag === "GlutenFree" && (color = "blue");
+              return (
+                <Badge
+                  key={i}
+                  borderRadius="full"
+                  objectFit="cover"
+                  px={3}
+                  my={2}
+                  colorScheme={color}
+                >
+                  {" "}
+                  {tag}
+                </Badge>
+              );
+            })}
         </Box>
       </Box>
     </Box>
