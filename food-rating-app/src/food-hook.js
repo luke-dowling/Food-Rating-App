@@ -8,9 +8,17 @@ export const useMeals = () => useContext(FoodContext);
 export default function FoodProvider({ children }) {
   const [meals, setMeals] = useState(FOODDATA);
 
-  const addMeal = ({ title, recipe, description, image, ingredients }) => {
+  const addMeal = ({
+    title,
+    recipe,
+    description,
+    image,
+    ingredients,
+    tags,
+  }) => {
     let ingredientsArray = ingredients.split(",");
     let recipeArray = recipe.split(",");
+    console.log("tags", tags);
     const newMeals = [
       ...meals,
       {
@@ -21,6 +29,7 @@ export default function FoodProvider({ children }) {
         description,
         image,
         ingredients: ingredientsArray,
+        tags,
       },
     ];
     setMeals(newMeals);
@@ -29,10 +38,10 @@ export default function FoodProvider({ children }) {
   const removeMeal = (id) => setMeals(meals.filter((meal) => meal.id !== id));
 
   const rateMeal = (id, rating) => {
-    console.log("hhhello");
     const newMeals = meals.map((meal) => {
       if (meal.id === id) {
-        meal = { ...meal, rating };
+        const newRating = ((meal.rating + rating) / 2).toFixed(2);
+        meal = { ...meal, rating: +newRating };
       }
       return meal;
     });

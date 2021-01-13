@@ -8,12 +8,17 @@ export default function MealList() {
   const { meals } = useMeals();
 
   return (
-    <Container maxW="5xl" centerContent>
-      <SimpleGrid columns={2} spacingX="40px" spacingY="40px">
+    <div className="meals-grid">
+      <SimpleGrid
+        maxW="7xl"
+        minChildWidth="220px"
+        spacingX="40px"
+        spacingY="40px"
+      >
         {meals.map((meal) => (
           <Meal maxW="3xl" key={meal.id} {...meal} />
         ))}
       </SimpleGrid>
-    </Container>
+    </div>
   );
 }

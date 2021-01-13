@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Image,
-  Badge,
   Button,
-  Text,
   Heading,
   useDisclosure,
   UnorderedList,
@@ -22,6 +20,8 @@ import {
 import { FaTrash } from "react-icons/fa";
 import StarRating from "./StarRating";
 import { useMeals } from "../food-hook";
+import StarRatingTotal from "./StarRatingTotal";
+import Tag from "./Tag";
 const Meal = ({
   title,
   name,
@@ -36,6 +36,12 @@ const Meal = ({
 }) => {
   const { rateMeal, removeMeal } = useMeals();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [userRating, setUserRating] = useState(0);
+
+  const handleRate = (id, rate) => {
+    setUserRating(rate);
+  };
 
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" my="4">
@@ -101,39 +107,22 @@ const Meal = ({
         </Modal>
 
         <Box d="flex" mt="2" alignItems="center">
-          <StarRating selectedStars={rating} />
+          <StarRatingTotal selectedStars={rating} />
         </Box>
 
         <Box d="flex" alignItems="baseline">
-          {tags &&
-            tags.map((tag, i) => {
-              let color;
-              tag === "Vegan" && (color = "teal");
-              tag === "GlutenFree" && (color = "blue");
-              return (
-                <Badge
-                  key={i}
-                  borderRadius="full"
-                  objectFit="cover"
-                  px={3}
-                  my={2}
-                  colorScheme={color}
-                >
-                  {" "}
-                  {tag}
-                </Badge>
-              );
-            })}
+          {tags && tags.map((tag, i) => <Tag key={i} tag={tag} />)}
         </Box>
         <Box borderTop="1px" borderColor="gray.200" my={2}>
           <Heading as="h4" size="m" my={2}>
-            @{userName} : Rate & Review here...
+            @{userName} : Rate here...
           </Heading>
           <Box d="flex" mt="2" alignItems="center">
             <StarRating
-              selectedStars={rating}
-              onRate={(rating) => rateMeal(id, rating)}
+              selectedStars={userRating}
+              onRate={(userRating) => handleRate(id, userRating)}
             />
+            <Button onClick={() => rateMeal(id, userRating)}>Rate</Button>
           </Box>
         </Box>
       </Box>
