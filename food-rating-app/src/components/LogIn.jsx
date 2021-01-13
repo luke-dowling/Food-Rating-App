@@ -26,12 +26,8 @@ const LogIn = () => {
     ) {
       setIsUser(true);
     }
-    /* const userPasswordCheck = userNameCheck.filter(
-      (user) => user.password === userDetails.password
-    );
-
-    userPasswordCheck.length === 1 && setUser(userPasswordCheck); */
   };
+
   useEffect(() => {
     if (isUser !== true) {
       setIsUser(false);

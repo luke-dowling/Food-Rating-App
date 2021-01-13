@@ -32,6 +32,7 @@ const Meal = ({
   recipe,
   ingredients,
   rating,
+  tags,
 }) => {
   const { rateMeal, removeMeal } = useMeals();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,33 +42,13 @@ const Meal = ({
       <Image boxSize="400px" objectFit="cover" src={image} alt="meal" />
 
       <Box p="6">
-        <Box d="flex" alignItems="baseline">
-          <Badge
-            borderRadius="full"
-            objectFit="cover"
-            px="2"
-            colorScheme="teal"
-          >
-            @{userName}
-          </Badge>
+        <Box mt={1} lineHeight="tight" isTruncated>
+          <Heading fontWeight="semibold" as="h4" size="md">
+            {title}
+          </Heading>
         </Box>
 
-        <Box
-          mt="1"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          isTruncated
-        >
-          {title}
-        </Box>
-
-        <Box>
-          <Box as="span" color="gray.600" fontSize="sm">
-            Des :
-          </Box>
-          {description}
-        </Box>
+        <Box my={2}>"{description}"</Box>
 
         <Button onClick={onOpen}>{name}</Button>
 
@@ -115,6 +96,26 @@ const Meal = ({
             selectedStars={rating}
             onRate={(rating) => rateMeal(id, rating)}
           />
+        </Box>
+
+        <Box d="flex" alignItems="baseline">
+          {tags.map((tag) => {
+            let color;
+            tag === "Vegan" && (color = "teal");
+            tag === "GlutenFree" && (color = "blue");
+            return (
+              <Badge
+                borderRadius="full"
+                objectFit="cover"
+                px={3}
+                my={2}
+                colorScheme={color}
+              >
+                {" "}
+                {tag}
+              </Badge>
+            );
+          })}
         </Box>
       </Box>
     </Box>
