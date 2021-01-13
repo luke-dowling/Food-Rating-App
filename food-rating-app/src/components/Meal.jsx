@@ -66,7 +66,9 @@ const Meal = ({
           </Heading>
         </Box>
 
-        <Box my={2}>"{description}"</Box>
+        <Box my={2} h={20}>
+          "{description}"
+        </Box>
 
         <Button onClick={onOpen}>{name}</Button>
 

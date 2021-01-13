@@ -33,7 +33,7 @@ export const FOODDATA = [
       "Bake it in the oven for 45mins",
     ],
     rating: 4,
-    tags: [],
+    tags: ["GlutenFree"],
   },
   {
     id: 2,
