@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import potIcon from "../assets/favicon.ico";
 
-const Nav = () => {
+const UserNav = () => {
   return (
     <Flex p="3">
       <Box p="2">
@@ -21,14 +21,14 @@ const Nav = () => {
       </Box>
       <Spacer />
       <Box p="2">
-        <Link to="signup">
+        <Link to="/">
           <Button colorScheme="teal" mr="5">
-            Sign Up
+            Add Meal
           </Button>
         </Link>
-        <Link to="/login">
+        <Link to="/">
           <Button colorScheme="teal" mr="2">
-            Log in
+            Home
           </Button>
         </Link>
       </Box>
@@ -36,4 +36,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default UserNav;

@@ -6,6 +6,7 @@ import { Heading } from "@chakra-ui/react";
 import { useEffect } from "react";
 import AddMealForm from "./AddMealForm";
 import MealList from "./MealList";
+import UserNav from "./UserNav";
 
 const User = ({ match }) => {
   const [user, setUser] = useState({});
@@ -16,6 +17,7 @@ const User = ({ match }) => {
 
   return (
     <main>
+      <UserNav />
       <Heading as="h1">Welcome {user[0] ? user[0].name : ""}</Heading>
       <AddMealForm />
       <MealList />
