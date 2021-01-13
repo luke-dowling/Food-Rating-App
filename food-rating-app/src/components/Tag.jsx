@@ -14,6 +14,15 @@ function Tag({ tag }) {
     case "Spicy":
       color = "red";
       break;
+    case "Meat":
+      color = "green";
+      break;
+    case "GMOFree":
+      color = "gray";
+      break;
+    case "Sugar":
+      color = "pink";
+      break;
     default:
       break;
   }

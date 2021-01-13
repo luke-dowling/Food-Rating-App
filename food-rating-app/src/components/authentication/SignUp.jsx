@@ -7,8 +7,6 @@ import {
   Button,
   FormControl,
   FormLabel,
-  InputGroup,
-  InputRightElement,
   Heading,
   Flex,
   Spacer,

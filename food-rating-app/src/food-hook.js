@@ -18,7 +18,7 @@ export default function FoodProvider({ children }) {
   }) => {
     let ingredientsArray = ingredients.split(",");
     let recipeArray = recipe.split(",");
-    console.log("tags", tags);
+
     const newMeals = [
       ...meals,
       {

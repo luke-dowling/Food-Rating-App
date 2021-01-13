@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 
 import { useMeals } from "../food-hook";
 import Meal from "./Meal";

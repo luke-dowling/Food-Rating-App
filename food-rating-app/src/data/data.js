@@ -17,8 +17,8 @@ export const FOODDATA = [
       "Mix eveything together in a bowl",
       "Bake it in the oven for 45mins",
     ],
-    rating: 3,
-    tags: ["Vegan"],
+    rating: 3.2,
+    tags: ["Vegan", "Sugar"],
   },
   {
     id: 1,
@@ -33,7 +33,7 @@ export const FOODDATA = [
       "Bake it in the oven for 45mins",
     ],
     rating: 4,
-    tags: ["GlutenFree"],
+    tags: ["GlutenFree", "Spicy"],
   },
   {
     id: 2,
@@ -48,13 +48,13 @@ export const FOODDATA = [
       "Mix eveything together in a bowl",
       "Bake it in the oven for 45mins",
     ],
-    rating: 1.4,
-    tags: ["GlutenFree"],
+    rating: 4.1,
+    tags: ["GlutenFree", "Meat"],
   },
 ];
 
 export const users = [
-  { id: 0, name: "User1", userName: "luke&adrian", password: "l&a" },
+  { id: 0, name: "Leslie Parker", userName: "luke&adrian", password: "l&a" },
   {
     id: 1,
     name: "User2",

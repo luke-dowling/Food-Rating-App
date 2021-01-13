@@ -7,7 +7,8 @@ import User from "./User";
 import "../css/App.css";
 import SignUp from "./authentication/SignUp";
 import Home from "./Home";
-import Dashboard from "./authentication/Dashboard";
+
+import AddMealForm from "./AddMealForm";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path="/user/:user/" component={User} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={LogIn} />
+          <Route exact path="/addMealForm" component={AddMealForm} />
           {/*<Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/signup" component={SignUp} /> */}

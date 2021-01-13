@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useInput } from "../hooks/useInput";
 import { useMeals } from "../food-hook";
+import { useHistory } from "react-router-dom";
 import {
   Input,
   Container,
@@ -12,6 +13,7 @@ import {
   HStack,
   Checkbox,
   FormHelperText,
+  Heading,
 } from "@chakra-ui/react";
 export default function AddMealForm() {
   const [mealProps, resetMealProps] = useInput({
@@ -23,10 +25,15 @@ export default function AddMealForm() {
     tags: [],
   });
 
+  const history = useHistory();
+
   const [tagsObj, setTagsObj] = useState({
     Vegan: false,
     GlutenFree: false,
     Spicy: false,
+    Sugar: false,
+    Meat: false,
+    GMOFree: false,
   });
 
   const { addMeal } = useMeals();
@@ -45,12 +52,16 @@ export default function AddMealForm() {
 
     addMeal(mealProps.value);
     resetMealProps();
+    history.goBack();
   };
 
   return (
-    <Container>
+    <Container maxW={"3xl"}>
+      <Heading style={{ textAlign: "center" }} my={7}>
+        Add a meal for the community
+      </Heading>
       <Box borderWidth="1px" borderRadius="lg" px={4} py={4}>
-        <form id="meal-form" onSubmit={submit}>
+        <form id="meal-form" onSubmit={submit} autoComplete="off">
           <FormControl isRequired id="title" my={3}>
             <FormLabel htmlFor="title">Meal title</FormLabel>{" "}
             <Input
@@ -123,6 +134,27 @@ export default function AddMealForm() {
                     onChange={handleCheckbox}
                   >
                     Spicy
+                  </Checkbox>
+                  <Checkbox
+                    checked={tagsObj.Sugar}
+                    value="Sugar"
+                    onChange={handleCheckbox}
+                  >
+                    Sugar
+                  </Checkbox>
+                  <Checkbox
+                    checked={tagsObj.GMOFree}
+                    value="GMOFree"
+                    onChange={handleCheckbox}
+                  >
+                    GMO Free
+                  </Checkbox>
+                  <Checkbox
+                    checked={tagsObj.Meat}
+                    value="Meat"
+                    onChange={handleCheckbox}
+                  >
+                    Meat
                   </Checkbox>
                 </HStack>
               </CheckboxGroup>

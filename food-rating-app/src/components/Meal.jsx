@@ -24,7 +24,6 @@ import StarRatingTotal from "./StarRatingTotal";
 import Tag from "./Tag";
 const Meal = ({
   title,
-  name,
   userName,
   image,
   description,
@@ -70,12 +69,12 @@ const Meal = ({
           "{description}"
         </Box>
 
-        <Button onClick={onOpen}>{name}</Button>
+        <Button onClick={onOpen}>Instructions</Button>
 
         <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>{name}</ModalHeader>
+            <ModalHeader>{title}</ModalHeader>
             <ModalCloseButton />
 
             <ModalBody>
@@ -124,7 +123,14 @@ const Meal = ({
               selectedStars={userRating}
               onRate={(userRating) => handleRate(id, userRating)}
             />
-            <Button onClick={() => rateMeal(id, userRating)}>Rate</Button>
+            <Box pb={5}>
+              <Button
+                colorScheme="teal"
+                onClick={() => rateMeal(id, userRating)}
+              >
+                Rate
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
