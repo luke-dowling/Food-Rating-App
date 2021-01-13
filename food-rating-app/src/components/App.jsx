@@ -14,11 +14,11 @@ const App = () => {
     <AuthProvider>
       <Router>
         <Switch>
-          <Route exact path="/" component={LogIn} />
-          <Route exact path="/User/:user/" component={User} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/user/:user/" component={User} />
           <Route exact path="/signup" component={SignUp} />
-          {/* <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/login" component={LogIn} />
+          {/*<Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/signup" component={SignUp} /> */}
         </Switch>

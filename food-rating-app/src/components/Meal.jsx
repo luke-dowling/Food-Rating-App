@@ -4,7 +4,6 @@ import {
   Image,
   Badge,
   Button,
-  Text,
   Heading,
   useDisclosure,
   UnorderedList,
