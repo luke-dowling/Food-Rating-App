@@ -11,7 +11,7 @@ export default function MealList() {
     <div className="meals-grid">
       <SimpleGrid
         maxW="7xl"
-        minChildWidth="220px"
+        minChildWidth="320px"
         spacingX="40px"
         spacingY="40px"
       >

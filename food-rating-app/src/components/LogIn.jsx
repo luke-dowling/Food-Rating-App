@@ -10,6 +10,10 @@ import {
   FormLabel,
   InputGroup,
   InputRightElement,
+  Heading,
+  Flex,
+  Spacer,
+  Text,
 } from "@chakra-ui/react";
 
 const LogIn = () => {
@@ -53,13 +57,21 @@ const LogIn = () => {
   }, [isUser]);
 
   return (
-    <form autoComplete="off" className="logInContainer">
+    <form className="logInContainer">
       <div className="submitContainer">
         {error && <ErrorMessage message={error} />}
+        <Heading
+          as="h1"
+          my="5"
+          color="teal.400"
+          fontSize="4xl"
+          fontWeight="extrabold"
+          textAlign="center"
+        >
+          Enter Your LogIn Details
+        </Heading>
         <FormControl isRequired id="userName">
-          <FormLabel colorScheme="teal" className="form-label">
-            Username
-          </FormLabel>
+          <FormLabel className="form-label">Username</FormLabel>
           <Input
             color="white"
             type="text"
@@ -87,14 +99,32 @@ const LogIn = () => {
             </InputRightElement>
           </InputGroup>
         </FormControl>
-        <Button mt={4} onClick={submitHandler}>
-          <Link
-            className="link"
-            to={(isUser && `/User/${user[0].userName}`) || "/"}
+        <Flex borderTop="2px">
+          <Button px="6" mt={4} onClick={submitHandler}>
+            <Link
+              className="link"
+              to={(isUser && `/User/${user[0].userName}`) || "/"}
+            >
+              Log In
+            </Link>
+          </Button>
+          <Spacer />
+          <Text
+            mt="5"
+            color="teal.400"
+            fontSize="md"
+            fontWeight="bold"
+            textShadow="1px 0 1px #000000"
           >
-            Log In
-          </Link>
-        </Button>
+            Haven't created an account yet?
+          </Text>
+          <Spacer />
+          <Button colorScheme="teal" px="6" mt={4}>
+            <Link className="link" to="/signup">
+              Sign Up
+            </Link>
+          </Button>
+        </Flex>
       </div>
     </form>
   );
