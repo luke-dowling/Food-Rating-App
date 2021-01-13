@@ -8,10 +8,10 @@ export const useMeals = () => useContext(FoodContext);
 export default function FoodProvider({ children }) {
   const [meals, setMeals] = useState(FOODDATA);
 
-  const addMeal = ({ title, recipe, description }) => {
+  const addMeal = ({ title, recipe, description, image }) => {
     const newMeals = [
       ...meals,
-      { id: v4(), rating: 0, title, recipe, description },
+      { id: v4(), rating: 0, title, recipe, description, image },
     ];
     setMeals(newMeals);
   };
@@ -19,6 +19,7 @@ export default function FoodProvider({ children }) {
   const removeMeal = (id) => setMeals(meals.filter((meal) => meal.id !== id));
 
   const rateMeal = (id, rating) => {
+    console.log("hhhello");
     const newMeals = meals.map((meal) => {
       if (meal.id === id) {
         meal = { ...meal, rating };

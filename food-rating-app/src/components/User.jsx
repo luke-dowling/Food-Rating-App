@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { FOODDATA } from "../data/data";
+
 import { users } from "../data/data";
 
-import Posts from "./Posts";
+import { Heading } from "@chakra-ui/react";
 import { useEffect } from "react";
 import AddMealForm from "./AddMealForm";
 import MealList from "./MealList";
@@ -16,7 +16,7 @@ const User = ({ match }) => {
 
   return (
     <main>
-      <h1>Welcome {user[0] ? user[0].name : ""}</h1>
+      <Heading as="h1">Welcome {user[0] ? user[0].name : ""}</Heading>
       <AddMealForm />
       <MealList />
     </main>

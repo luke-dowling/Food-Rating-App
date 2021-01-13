@@ -2,6 +2,7 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import StarRating from "./StarRating";
 import { useMeals } from "../food-hook";
+import { Heading, IconButton } from "@chakra-ui/react";
 export default function Meal({
   title,
   name,
@@ -18,12 +19,13 @@ export default function Meal({
   return (
     <section>
       <div className="meal-card">
-        <h1>{title}</h1>
+        <Heading as="h3" size="lg">
+          {title}
+        </Heading>
         <h3>{name}</h3>
         <h3>{userName}</h3>
-        <button onClick={() => removeMeal(id)}>
-          <FaTrash />
-        </button>
+        <IconButton onClick={() => removeMeal(id)} icon={<FaTrash />} />
+
         <div className="image-container">
           <img src={image} alt="meal" style={{ height: "150px" }} />
         </div>

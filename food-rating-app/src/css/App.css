@@ -23,22 +23,21 @@ body {
 
 .submitContainer {
   width: 500px;
-  height: 300px;
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.submitContainer label {
+/* .submitContainer label {
   display: block;
   font-size: 32px;
   font-weight: bold;
   color: blue;
   text-shadow: 1px 1px 3px snow;
-}
+} */
 
-.submitContainer input {
+/* .submitContainer input {
   margin: 15px 0;
   padding: 10px;
   width: 100%;
@@ -49,8 +48,8 @@ body {
   background-color: snow;
   color: blue;
 }
-
-.submitContainer button {
+ */
+/* .submitContainer button {
   margin: 10px 30px;
   padding: 5px 20px;
   font-size: 32px;
@@ -60,11 +59,15 @@ body {
   border: none;
   border-bottom: 2px solid snow;
   cursor: pointer;
-}
+} */
 
-.link {
+/* .link {
   text-decoration: none;
   color: inherit;
-}
+} */
 
-/* END LOG IN STYLES */ ;
+/* END LOG IN STYLES */
+
+.form-label {
+  color: white;
+}
