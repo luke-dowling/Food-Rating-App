@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FOODDATA } from "../data/data";
 import { users } from "../data/data";
 
-import Posts from "./Posts";
 import { useEffect } from "react";
 import AddMealForm from "./AddMealForm";
 import MealList from "./MealList";

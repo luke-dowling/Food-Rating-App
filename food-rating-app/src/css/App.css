@@ -8,7 +8,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-/* LOG IN STYLES */
+/* LOG IN */
 
 .logInContainer {
   height: 100vh;
@@ -67,4 +67,4 @@ body {
   color: inherit;
 }
 
-/* END LOG IN STYLES */ ;
+/* END LOG IN */
