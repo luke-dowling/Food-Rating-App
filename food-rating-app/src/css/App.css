@@ -8,7 +8,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-/* LOG IN STYLES */
+/* LOG IN */
 
 .logInContainer {
   height: 100vh;
@@ -71,3 +71,4 @@ body {
 .form-label {
   color: white;
 }
+/* END LOG IN */

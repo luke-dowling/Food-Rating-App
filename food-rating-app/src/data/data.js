@@ -12,12 +12,13 @@ export const FOODDATA = [
     title: "My Verious Vegan Burger!",
     description:
       "This vegan burger will blow your mind, it is a bit spicy so bare that in mind!",
-    ingredients: ["1 garlic, 200g mushrooms, 1 lemon, 2 onions"],
+    ingredients: ["1 garlic", "200g mushrooms", "1 lemon", "2 onions"],
     recipe: [
       "Mix eveything together in a bowl",
       "Bake it in the oven for 45mins",
     ],
     rating: 3,
+    tags: ["Vegan"],
   },
   {
     id: 1,
@@ -26,12 +27,13 @@ export const FOODDATA = [
     name: "Johns Mild Curry",
     title: "Johns Mild Curry",
     description: "Here you go folks, mmmmm",
-    ingredients: ["1 garlic, 200g mushrooms, 1 lemon, 2 onions"],
+    ingredients: ["1 garlic", "200g mushrooms", "1 lemon", "2 onions"],
     recipe: [
       "Mix eveything together in a bowl",
       "Bake it in the oven for 45mins",
     ],
     rating: 4,
+    tags: [],
   },
   {
     id: 2,
@@ -41,12 +43,13 @@ export const FOODDATA = [
     title: "Steak done right!!!",
     description:
       "I'm tired of people doing steak the wrong way, try this and never turn back",
-    ingredients: ["1 garlic, 200g mushrooms, 1 lemon, 2 onions"],
+    ingredients: ["1 garlic", "200g mushrooms", "1 lemon", "2 onions"],
     recipe: [
       "Mix eveything together in a bowl",
       "Bake it in the oven for 45mins",
     ],
     rating: 1.4,
+    tags: ["GlutenFree"],
   },
 ];
 
