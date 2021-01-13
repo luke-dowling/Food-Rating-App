@@ -38,9 +38,21 @@ const Meal = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <Image boxSize="400px" objectFit="cover" src={image} alt="meal" />
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" my="4">
+      <Box
+        position="absolute"
+        p="1"
+        m="2"
+        boxShadow="xs"
+        rounded="md"
+        bg="whitesmoke"
+        cursor="pointer"
+        onClick={() => removeMeal(id)}
+      >
+        <FaTrash color="red" />
+      </Box>
 
+      <Image boxSize="400px" objectFit="cover" src={image} alt="meal" />
       <Box p="6">
         <Box mt={1} lineHeight="tight" isTruncated>
           <Heading fontWeight="semibold" as="h4" size="md">
@@ -91,12 +103,6 @@ const Meal = ({
         <Box d="flex" mt="2" alignItems="center">
           <StarRating selectedStars={rating} />
         </Box>
-        <Box d="flex" mt="2" alignItems="center">
-          <StarRating
-            selectedStars={rating}
-            onRate={(rating) => rateMeal(id, rating)}
-          />
-        </Box>
 
         <Box d="flex" alignItems="baseline">
           {tags &&
@@ -118,6 +124,17 @@ const Meal = ({
                 </Badge>
               );
             })}
+        </Box>
+        <Box borderTop="1px" borderColor="gray.200" my={2}>
+          <Heading as="h4" size="m" my={2}>
+            @{userName} : Rate & Review here...
+          </Heading>
+          <Box d="flex" mt="2" alignItems="center">
+            <StarRating
+              selectedStars={rating}
+              onRate={(rating) => rateMeal(id, rating)}
+            />
+          </Box>
         </Box>
       </Box>
     </Box>
