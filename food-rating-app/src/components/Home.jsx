@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import communitCooking from "../assets/community-cooking.jpg";
 import exampleImage from "../assets/example-user-content.png";
+
 //import { Link } from "react-router-dom";
 //import { AuthContext } from "./Auth";
 //import { AuthProvider } from "./authentication/Auth";

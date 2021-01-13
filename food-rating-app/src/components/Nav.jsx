@@ -2,12 +2,15 @@ import React from "react";
 import { Flex, Box, Heading, Spacer, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
+import potIcon from "../assets/favicon.ico";
+
 const Nav = () => {
   return (
     <Flex p="3">
       <Box p="2">
         <Heading size="md" color="red.600">
-          @CommunityChef
+          <i>{potIcon}</i>
+          CommunityChef
         </Heading>
       </Box>
       <Spacer />
