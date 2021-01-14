@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { users } from "../data/data";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
+import firebase from "../firebase/config";
 import ErrorMessage from "./ErrorMessage";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import {
@@ -17,44 +18,39 @@ import {
 } from "@chakra-ui/react";
 
 const LogIn = () => {
+  /*  const [currentUser, setCurrentUser] = useState(null); */
   const [userDetails, setUserDetails] = useState({
-    userName: "",
+    email: "",
     password: "",
   });
-  const [isUser, setIsUser] = useState(false);
-  const [user, setUser] = useState(users);
+
   const [show, setShow] = React.useState(false);
   const [error, setError] = useState("");
+
+  const history = useHistory();
   const handleClick = () => setShow(!show);
 
   const signInHandler = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const userNameCheck = users.filter(
-      (user) => user.userName === userDetails.userName
-    );
-    console.log(userDetails.password);
-    if (
-      userNameCheck[0] &&
-      userNameCheck[0].password === userDetails.password
-    ) {
-      setIsUser(true);
-      setError("");
-    } else {
-      setError("Invalid username or password");
+
+    try {
+      const credentials = await firebase
+        .auth()
+        .signInWithEmailAndPassword(userDetails.email, userDetails.password);
+
+      const displayName = credentials.user.displayName;
+      history.push("/user/" + displayName);
+      /*  setCurrentUser(true); */
+    } catch (error) {
+      console.log(error);
+
+      setError(error);
     }
   };
-
-  useEffect(() => {
-    if (isUser !== true) {
-      setIsUser(false);
-    } else {
-      setIsUser(true);
-    }
-  }, [isUser]);
 
   return (
     <form className="logInContainer">
@@ -70,18 +66,18 @@ const LogIn = () => {
         >
           Enter Your LogIn Details
         </Heading>
-        <FormControl isRequired id="userName">
-          <FormLabel className="form-label">Username</FormLabel>
+        <FormControl isRequired id="email">
+          <FormLabel className="form-label">email</FormLabel>
           <Input
             color="white"
             type="text"
-            name="userName"
+            name="email"
             placeholder="Your user name"
             onChange={signInHandler}
             required
           />
         </FormControl>
-        <FormControl isRequired id="userName" py={4}>
+        <FormControl isRequired id="password" py={4}>
           <FormLabel className="form-label">Password</FormLabel>
           <InputGroup size="md">
             <Input
@@ -100,13 +96,8 @@ const LogIn = () => {
           </InputGroup>
         </FormControl>
         <Flex borderTop="2px">
-          <Button px="6" mt={4} onClick={submitHandler}>
-            <Link
-              className="link"
-              to={(isUser && `/User/${user[0].userName}`) || "/"}
-            >
-              Log In
-            </Link>
+          <Button px="6" mt={4} onClick={handleSubmit}>
+            Log In
           </Button>
           <Spacer />
           <Text

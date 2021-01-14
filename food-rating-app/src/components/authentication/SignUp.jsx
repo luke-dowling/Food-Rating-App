@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import firebase from "../../firebase/config";
-
+import { db } from "../../firebase/config";
 import {
   Input,
   Button,
@@ -16,20 +16,34 @@ import {
 
 const SignUp = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  const handleSubmit = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = e.target.elements;
+
     try {
-      firebase
+      const credentials = await firebase
         .auth()
-        .createUserWithEmailAndPassword(email.value, password.value);
+        .createUserWithEmailAndPassword(email, password);
+
+      await credentials.user.updateProfile({ displayName: firstName });
+
+      await db
+        .collection("users")
+        .doc(credentials.user.uid)
+        .set({ displayName: firstName });
+
       setCurrentUser(true);
     } catch (error) {
       alert(error);
     }
   };
+
   if (currentUser) {
-    return <Redirect to="/dashboard" />;
+    history.push("/user/" + firstName);
   }
   return (
     <form className="logInContainer">
@@ -45,16 +59,38 @@ const SignUp = () => {
           Create Your Account
         </Heading>
         <FormControl onSubmit={handleSubmit}>
+          <FormLabel className="form-label" htmlFor="name">
+            Name
+          </FormLabel>
+          <Input
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            color="white"
+            type="firstName"
+            name="firstName"
+            placeholder="Name"
+          />
+        </FormControl>
+        <FormControl onSubmit={handleSubmit}>
           <FormLabel className="form-label" htmlFor="email">
             Email
           </FormLabel>
-          <Input color="white" type="email" name="email" placeholder="Email" />
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            color="white"
+            type="email"
+            name="email"
+            placeholder="Email"
+          />
         </FormControl>
         <FormControl py="4">
           <FormLabel className="form-label" htmlFor="password">
             Password
           </FormLabel>
           <Input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             color="white"
             type="password"
             name="password"
@@ -62,11 +98,11 @@ const SignUp = () => {
           />
         </FormControl>
         <Flex borderTop="2px">
-          <Link className="link" to="/">
-            <Button px="6" mt={4} type="submit">
+          <Button onClick={handleSubmit} px="6" mt={4} type="submit">
+            <Link className="link" to="/">
               Submit
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Spacer />
           <Text
             mt="5"
@@ -78,11 +114,11 @@ const SignUp = () => {
             Already have an account?
           </Text>
           <Spacer />
-          <Link className="link" to="/login">
-            <Button colorScheme="teal" px="6" mt={4}>
-              Log In
-            </Button>
-          </Link>
+          <Button colorScheme="teal" px="6" mt={4}>
+            <Link className="link" to="/login">
+              Sign Up
+            </Link>
+          </Button>
         </Flex>
       </div>
     </form>

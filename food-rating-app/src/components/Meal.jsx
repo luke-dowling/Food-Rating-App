@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
   Image,
   Button,
   Heading,
   useDisclosure,
-  UnorderedList,
-  OrderedList,
-  ListItem,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -22,24 +19,40 @@ import StarRating from "./StarRating";
 import { useMeals } from "../food-hook";
 import StarRatingTotal from "./StarRatingTotal";
 import Tag from "./Tag";
+import { db } from "../firebase/config";
+import { AuthContext } from "../firebase/context";
 const Meal = ({
-  title,
-  userName,
-  image,
-  description,
-  id,
-  recipe,
-  ingredients,
-  rating,
-  tags,
+  data: {
+    title,
+    userName,
+    image,
+    description,
+    recipe,
+    ingredients,
+    rating,
+    tags,
+  },
+  mealId,
+  removeMeal,
 }) => {
-  const { rateMeal, removeMeal } = useMeals();
+  const { user } = useContext(AuthContext);
+  const { rateMeal } = useMeals();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const [userRating, setUserRating] = useState(0);
 
   const handleRate = (id, rate) => {
     setUserRating(rate);
+  };
+
+  const handleRemoveMeal = (mealId) => {
+    db.collection("users")
+      .doc(user.uid)
+      .collection("meals")
+      .doc(mealId)
+      .delete()
+      .then(() => {})
+      .catch((err) => console.log("error removing the document", err));
+    removeMeal(mealId);
   };
 
   return (
@@ -52,7 +65,7 @@ const Meal = ({
         rounded="md"
         bg="whitesmoke"
         cursor="pointer"
-        onClick={() => removeMeal(id)}
+        onClick={() => handleRemoveMeal(mealId)}
       >
         <FaTrash color="red" />
       </Box>
@@ -81,19 +94,19 @@ const Meal = ({
               <Heading as="h4" size="m" mb={2}>
                 Ingredients
               </Heading>
-              <UnorderedList p={3}>
+              {/*   <UnorderedList p={3}>
                 {ingredients.map((ingredient, i) => {
                   return <ListItem key={i}>{ingredient}</ListItem>;
                 })}
-              </UnorderedList>
+              </UnorderedList> */}
               <Heading as="h4" size="m" my={2}>
                 Recipe
               </Heading>
-              <OrderedList p={3}>
+              {/*  <OrderedList p={3}>
                 {recipe.map((instruction, i) => {
                   return <ListItem key={i}>{instruction}</ListItem>;
                 })}
-              </OrderedList>
+              </OrderedList> */}
             </ModalBody>
 
             <ModalFooter>
@@ -121,12 +134,12 @@ const Meal = ({
           <Box d="flex" mt="2" alignItems="center">
             <StarRating
               selectedStars={userRating}
-              onRate={(userRating) => handleRate(id, userRating)}
+              onRate={(userRating) => handleRate(mealId, userRating)}
             />
             <Box pb={5}>
               <Button
                 colorScheme="teal"
-                onClick={() => rateMeal(id, userRating)}
+                onClick={() => rateMeal(mealId, userRating)}
               >
                 Rate
               </Button>

@@ -1,25 +1,19 @@
-import React, { useState } from "react";
-
-import { users } from "../data/data";
+import React, { useContext } from "react";
 
 import { Heading } from "@chakra-ui/react";
-import { useEffect } from "react";
 
 import MealList from "./MealList";
 import UserNav from "./UserNav";
+import { AuthContext } from "../firebase/context";
 
-const User = ({ match }) => {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    setUser(users.filter((user) => user.userName === match.params.user));
-  }, [match.params.user]);
+const User = () => {
+  const { user } = useContext(AuthContext);
 
   return (
     <main>
       <UserNav />
       <Heading style={{ textAlign: "center", color: "black" }} as="h1">
-        Welcome {user[0] ? user[0].name : ""}
+        Welcome {user && user.displayName}
       </Heading>
 
       <MealList />

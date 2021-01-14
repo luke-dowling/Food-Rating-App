@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "../firebase/config";
 import {
   Flex,
   Box,
@@ -7,11 +8,25 @@ import {
   Button,
   IconButton,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import potIcon from "../assets/favicon.ico";
 
 const UserNav = () => {
+  const history = useHistory();
+  const handleSignOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log("user signed out!");
+        history.push("/");
+      })
+      .catch((error) => {
+        console.error("En error has ocurred", error);
+      });
+  };
+
   return (
     <Flex p="3">
       <Box p="2">
@@ -45,6 +60,7 @@ const UserNav = () => {
             Home
           </Button>
         </Link>
+        <Button onClick={handleSignOut}>Sing out</Button>
       </Box>
     </Flex>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AuthProvider } from "./authentication/Auth";
+import { AuthProvider } from "../firebase/context";
 import LogIn from "./LogIn";
 import User from "./User";
 
@@ -20,9 +20,6 @@ const App = () => {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/addMealForm" component={AddMealForm} />
-          {/*<Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/login" component={LogIn} />
-          <Route exact path="/signup" component={SignUp} /> */}
         </Switch>
       </Router>
     </AuthProvider>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useInput } from "../hooks/useInput";
 import { useMeals } from "../food-hook";
 import { useHistory } from "react-router-dom";
@@ -15,7 +15,13 @@ import {
   FormHelperText,
   Heading,
 } from "@chakra-ui/react";
+
+import { db } from "../firebase/config";
+import { AuthContext } from "../firebase/context";
+
 export default function AddMealForm() {
+  const { user } = useContext(AuthContext);
+  const history = useHistory();
   const [mealProps, resetMealProps] = useInput({
     title: "",
     description: "",
@@ -24,8 +30,6 @@ export default function AddMealForm() {
     ingredients: "",
     tags: [],
   });
-
-  const history = useHistory();
 
   const [tagsObj, setTagsObj] = useState({
     Vegan: false,
@@ -49,10 +53,15 @@ export default function AddMealForm() {
         mealProps.value.tags.push(badge);
       }
     }
-
-    addMeal(mealProps.value);
-    resetMealProps();
+    //Add a new meal to the collection
+    db.collection("users")
+      .doc(user.uid)
+      .collection("meals")
+      .add({ ...mealProps.value });
     history.goBack();
+    resetMealProps();
+    /* addMeal(mealProps.value);
+     */
   };
 
   return (
