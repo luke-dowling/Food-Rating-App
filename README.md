@@ -8,6 +8,6 @@ Food-Rating-App allows you to upload your meals and rate other peoples.
 
 ## Technology used :
 
-- Firebase: Authentication, Storeage
+- Firebase: Authentication & Storeage
 - React: Frontend JS Library
-- 
+- Chakra UI: Component Library
